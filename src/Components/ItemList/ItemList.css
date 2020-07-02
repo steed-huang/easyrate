@@ -1,35 +1,35 @@
 .item {
-    text-align: center;
-    font-size: 2vh;
+  text-align: center;
+  font-size: 2vh;
 
-    width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-    left: 0;
-    right: 0;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
 
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
 
-    margin-top: 1vh;
-    margin-bottom: 1vh;
+  margin-top: 1vh;
+  margin-bottom: 1vh;
 }
 
 .item_name {
-    text-align: center;
-    width: 75%;
-    word-wrap: break-word;
-    margin-left: 5%;
+  text-align: center;
+  width: 75%;
+  word-wrap: break-word;
+  margin-left: 5%;
 
-    outline: 0.1vh solid grey;
-    background-color: rgb(218, 218, 218);
+  outline: 0.1vh solid grey;
+  background-color: rgb(218, 218, 218);
 }
 
 .item_rating {
-    text-align: center;
-    width: 15%;
-    margin-right: 5%;
+  text-align: center;
+  width: 15%;
+  margin-right: 5%;
 
-    outline: 0.1vh solid grey;
-    background-color: rgb(218, 218, 218);
+  outline: 0.1vh solid grey;
+  background-color: rgb(218, 218, 218);
 }

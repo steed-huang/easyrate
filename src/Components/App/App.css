@@ -1,44 +1,45 @@
 .centered-flex {
-    position: absolute;
-    margin-left: auto;
-    margin-right: auto;
-    left: 0;
-    right: 0;
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 #list_body {
-    background: rgb(235, 235, 235);
-    top: 10vh;
-    height: 60vh;
-    width: 45vh;
+  background: rgb(235, 235, 235);
+  top: 10vh;
+  height: 60vh;
+  width: 45vh;
 
-    outline: 0.3vh solid rgb(49, 49, 49);
+  outline: 0.3vh solid rgb(49, 49, 49);
 }
 
 #list {
-    height: 100%;
-    width: 100%;
-    overflow-y: auto;
+  height: 100%;
+  width: 100%;
+  overflow-y: auto;
 }
 
 #add_body {
-    text-align: center;
-    bottom: 8vh;
+  text-align: center;
+  bottom: 8vh;
 }
 
 #item_input {
-    margin-top: 5vh;
+  margin-top: 5vh;
 }
 
-#button {
-    margin-top: 1vh;
+#button_1 {
+  margin-top: 1vh;
 }
 
-#start_button {
-    margin-top: 5vh;
+#button_2 {
+  margin-top: 1vh;
+  margin-bottom: 5vh;
 }
