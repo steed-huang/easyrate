@@ -14,23 +14,28 @@
 #list_body {
     background: rgb(235, 235, 235);
     top: 10vh;
-    overflow-y: auto;
     height: 60vh;
-    width: 30vh;
+    width: 45vh;
 
-    outline: 0.3vh dotted black;
+    outline: 0.3vh solid rgb(49, 49, 49);
+}
+
+#list {
+    height: 100%;
+    width: 100%;
+    overflow-y: auto;
 }
 
 #add_body {
     text-align: center;
-    bottom: 10vh;
+    bottom: 8vh;
 }
 
 #item_input {
     margin-top: 5vh;
 }
 
-#add_button {
+#button {
     margin-top: 1vh;
 }
 
