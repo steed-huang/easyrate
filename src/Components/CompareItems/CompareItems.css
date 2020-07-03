@@ -57,6 +57,11 @@
   justify-content: center;
 }
 
+#draw_button {
+  height: 5vh;
+  width: 10vh;
+}
+
 #close_button {
   position: absolute;
   top: 90%;

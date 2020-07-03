@@ -13,7 +13,7 @@
 
 #list_body {
   background: rgb(235, 235, 235);
-  top: 10vh;
+  top: 8vh;
   height: 60vh;
   width: 45vh;
 
@@ -35,11 +35,10 @@
   margin-top: 5vh;
 }
 
-#button_1 {
+.button {
   margin-top: 1vh;
 }
 
-#button_2 {
-  margin-top: 1vh;
+#button_bot {
   margin-bottom: 5vh;
 }

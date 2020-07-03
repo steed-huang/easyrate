@@ -26,6 +26,7 @@ function App() {
   var handleAddItems = (e) => {
     const name = itemInputRef.current.value;
     if (name === "") return;
+    // could replace uuid with name since they have unique names...
     setItems((prevItems) => {
       return [...prevItems, { id: uuidv4(), name: name, rating: 50 }];
     });
@@ -38,16 +39,36 @@ function App() {
     setItems(newItems);
   };
 
+  // reset ratings to 50
+  var handleClearRatings = (e) => {
+    const newItems = items.map((item) => {
+      return { ...item, rating: 50 };
+    });
+    setItems(newItems);
+  };
+
   // for setState item from CompareItems component
   // updates rating of two items
-  var updateItem = (winner, loser, delta_w, delta_l) => {
-    const w_index = items.indexOf(winner);
-    const l_index = items.indexOf(loser);
+  var updateItem = (i1, i2, new_r1, new_r2) => {
+    const index_1 = items.indexOf(i1);
+    const index_2 = items.indexOf(i2);
     const newItems = [...items];
 
+    let n1 = new_r1;
+    let n2 = new_r2;
+
+    // set bounds
+    if (n1 > 100) n1 = 100;
+    else if (n1 < 0) n1 = 0;
+    if (n2 > 100) n2 = 100;
+    else if (n2 < 0) n2 = 0;
+
+    console.log(n1);
+    console.log(n2);
+
     // update rating
-    newItems[w_index] = { ...newItems[w_index], rating: newItems[w_index].rating + delta_w };
-    newItems[l_index] = { ...newItems[l_index], rating: newItems[l_index].rating + delta_l };
+    newItems[index_1] = { ...newItems[index_1], rating: n1 };
+    newItems[index_2] = { ...newItems[index_2], rating: n2 };
 
     // sort by rating
     newItems.sort((a, b) => b.rating - a.rating);
@@ -67,10 +88,13 @@ function App() {
       <div id="add_body" className="centered-flex">
         {/* Item Interaction */}
         <input ref={itemInputRef} type="text" id="item_input" />
-        <button onClick={handleAddItems} id="button_1">
+        <button onClick={handleAddItems} className="button">
           Add Item
         </button>
-        <button onClick={handleClearItems} id="button_2">
+        <button onClick={handleClearRatings} className="button">
+          Clear Ratings
+        </button>
+        <button onClick={handleClearItems} className="button" id="button_bot">
           Clear Items
         </button>
       </div>

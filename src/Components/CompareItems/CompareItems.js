@@ -28,27 +28,54 @@ export default class CompareItems extends React.Component {
   };
 
   // update compared items ratings in parent
-  updateRating = (winner) => {
-    const loser = winner ? 0 : 1;
-    const matchItemWinner = this.props.items.find((item) => {
-      return item.name === this.state.random_items[winner].name;
+  updateRating = (result) => {
+    const matchItemOne = this.props.items.find((item) => {
+      return item.name === this.state.random_items[0].name;
     });
-    const matchItemLoser = this.props.items.find((item) => {
-      return item.name === this.state.random_items[loser].name;
+    const matchItemTwo = this.props.items.find((item) => {
+      return item.name === this.state.random_items[1].name;
     });
 
-    const delta = this.getRatingChange(
-      this.state.random_items[winner].rating,
-      this.state.random_items[loser].rating
-    );
+    const newRating = this.getRatingChange(matchItemOne.rating, matchItemTwo.rating, result);
 
-    this.props.updateItem(matchItemWinner, matchItemLoser, delta.winner, delta.loser);
+    this.props.updateItem(matchItemOne, matchItemTwo, newRating.one, newRating.two);
   };
 
   // calcuates rating change for match
-  getRatingChange = (r1, r2) => {
+  getRatingChange = (r1, r2, result) => {
+    // generic elo calculations
+    // transformed rating
+    const TR1 = Math.pow(10, parseFloat(r1) / 400);
+    const TR2 = Math.pow(10, parseFloat(r2) / 400);
+    // expected scores
+    const E1 = parseFloat(TR1) / (parseFloat(TR1) + parseFloat(TR2));
+    const E2 = parseFloat(TR2) / (parseFloat(TR1) + parseFloat(TR2));
+    // score
+    let S1, S2;
+    if (result === 0) {
+      // item one won
+      S1 = 1;
+      S2 = 0;
+    } else if (result === 1) {
+      // item two won
+      S1 = 0;
+      S2 = 1;
+    } else if (result === 0.5) {
+      // tie
+      S1 = 0.5;
+      S2 = 0.5;
+    }
+    // K value
+    const K = 32;
+    // new elo rating
+    let NR1 = (parseFloat(r1) + parseFloat(K) * (parseFloat(S1) - parseFloat(E1))).toFixed(1);
+    let NR2 = (parseFloat(r2) + parseFloat(K) * (parseFloat(S2) - parseFloat(E2))).toFixed(1);
+
+    console.log(NR1);
+    console.log(NR2);
+
     // add calculations later
-    return { winner: 10, loser: -10 };
+    return { one: NR1, two: NR2 };
   };
 
   render() {
@@ -84,6 +111,9 @@ export default class CompareItems extends React.Component {
                     this.setRandomOption();
                   }}
                 />
+                <button onClick={() => this.updateRating(0.5)} id="draw_button">
+                  Draw
+                </button>
                 <Item
                   item={this.state.random_items[1]}
                   updateFunc={() => {
