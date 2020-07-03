@@ -38,6 +38,23 @@ function App() {
     setItems(newItems);
   };
 
+  // for setState item from CompareItems component
+  // updates rating of two items
+  var updateItem = (winner, loser, delta_w, delta_l) => {
+    const w_index = items.indexOf(winner);
+    const l_index = items.indexOf(loser);
+    const newItems = [...items];
+
+    // update rating
+    newItems[w_index] = { ...newItems[w_index], rating: newItems[w_index].rating + delta_w };
+    newItems[l_index] = { ...newItems[l_index], rating: newItems[l_index].rating + delta_l };
+
+    // sort by rating
+    newItems.sort((a, b) => b.rating - a.rating);
+
+    setItems(newItems);
+  };
+
   return (
     <>
       {/* List Body */}
@@ -59,7 +76,7 @@ function App() {
       </div>
 
       {/* Item Comparing Modal */}
-      <CompareItems items={items} />
+      <CompareItems items={items} updateItem={updateItem} />
     </>
   );
 }

@@ -11,7 +11,7 @@ export default class CompareItems extends React.Component {
 
   // toggle show state
   handleToggleShow = (e) => {
-    this.setState((prevState) => ({ ...prevState, show: !prevState.show }));
+    this.setState((prevState) => ({ show: !prevState.show }));
   };
 
   // set 2 random items from list
@@ -19,19 +19,36 @@ export default class CompareItems extends React.Component {
     // list must be at least 3 length
     if (this.props.items == null || this.props.items.length <= 2) {
       const newRandom = [{ name: "NOT ENOUGH ITEMS" }, { name: "NOT ENOUGH ITEMS" }];
-      this.setState((prevState) => ({ ...prevState, random_items: newRandom }));
+      this.setState({ random_items: newRandom });
     } else {
       const shuffled = this.props.items.sort(() => 0.5 - Math.random());
       const selected = shuffled.slice(0, 2);
-      this.setState((prevState) => ({ ...prevState, random_items: selected }));
+      this.setState({ random_items: selected });
     }
   };
 
-  // update compared items ratings
+  // update compared items ratings in parent
   updateRating = (winner) => {
     const loser = winner ? 0 : 1;
-    //temp
-    console.log(this.state.random_items[winner].name + " wins!");
+    const matchItemWinner = this.props.items.find((item) => {
+      return item.name === this.state.random_items[winner].name;
+    });
+    const matchItemLoser = this.props.items.find((item) => {
+      return item.name === this.state.random_items[loser].name;
+    });
+
+    const delta = this.getRatingChange(
+      this.state.random_items[winner].rating,
+      this.state.random_items[loser].rating
+    );
+
+    this.props.updateItem(matchItemWinner, matchItemLoser, delta.winner, delta.loser);
+  };
+
+  // calcuates rating change for match
+  getRatingChange = (r1, r2) => {
+    // add calculations later
+    return { winner: 10, loser: -10 };
   };
 
   render() {
