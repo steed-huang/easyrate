@@ -63,8 +63,9 @@ function App() {
     if (n2 > 100) n2 = 100;
     else if (n2 < 0) n2 = 0;
 
-    console.log(n1);
-    console.log(n2);
+    // console log
+    console.log(newItems[index_1].name + ": Before: " + newItems[index_1].rating + " After: " + n1);
+    console.log(newItems[index_2].name + ": Before: " + newItems[index_2].rating + " After: " + n2);
 
     // update rating
     newItems[index_1] = { ...newItems[index_1], rating: n1 };

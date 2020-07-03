@@ -65,14 +65,13 @@ export default class CompareItems extends React.Component {
       S1 = 0.5;
       S2 = 0.5;
     }
-    // K value
-    const K = 32;
+
+    // K factor (max rating change)
+    const K = 16;
+
     // new elo rating
     let NR1 = (parseFloat(r1) + parseFloat(K) * (parseFloat(S1) - parseFloat(E1))).toFixed(1);
     let NR2 = (parseFloat(r2) + parseFloat(K) * (parseFloat(S2) - parseFloat(E2))).toFixed(1);
-
-    console.log(NR1);
-    console.log(NR2);
 
     // add calculations later
     return { one: NR1, two: NR2 };
