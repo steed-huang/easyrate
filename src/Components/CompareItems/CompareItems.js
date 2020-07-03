@@ -111,7 +111,13 @@ export default class CompareItems extends React.Component {
                     this.setRandomOption();
                   }}
                 />
-                <button onClick={() => this.updateRating(0.5)} id="draw_button">
+                <button
+                  onClick={() => {
+                    this.updateRating(0.5);
+                    this.setRandomOption();
+                  }}
+                  id="draw_button"
+                >
                   Draw
                 </button>
                 <Item
