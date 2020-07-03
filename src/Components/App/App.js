@@ -76,6 +76,14 @@ function App() {
     setItems(newItems);
   };
 
+  // handle keydown enter for input
+  var handleKeyDown = (e) => {
+    // enter keycode
+    if (e.keyCode === 13) {
+      handleAddItems();
+    }
+  };
+
   return (
     <>
       {/* List Body */}
@@ -87,7 +95,7 @@ function App() {
 
       <div id="add_body" className="centered-flex">
         {/* Item Interaction */}
-        <input ref={itemInputRef} type="text" id="item_input" />
+        <input ref={itemInputRef} onKeyDown={handleKeyDown} type="text" id="item_input" />
         <button onClick={handleAddItems} className="button">
           Add Item
         </button>
