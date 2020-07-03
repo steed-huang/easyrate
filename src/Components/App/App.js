@@ -59,17 +59,24 @@ function App() {
 
     // set bounds
     if (n1 > 100) n1 = 100;
-    else if (n1 < 0) n1 = 0;
+    else if (n1 < 10) n1 = 10;
     if (n2 > 100) n2 = 100;
-    else if (n2 < 0) n2 = 0;
+    else if (n2 < 10) n2 = 10;
 
-    // console log
+    // log rating change
     console.log(newItems[index_1].name + ": Before: " + newItems[index_1].rating + " After: " + n1);
     console.log(newItems[index_2].name + ": Before: " + newItems[index_2].rating + " After: " + n2);
 
     // update rating
     newItems[index_1] = { ...newItems[index_1], rating: n1 };
     newItems[index_2] = { ...newItems[index_2], rating: n2 };
+
+    // log avg rating
+    const total_rating = newItems.reduce((totalRating, item) => {
+      return totalRating + parseFloat(item.rating);
+    }, 0);
+    if (newItems.length > 0)
+      console.log("Average Rating: " + (total_rating / newItems.length).toFixed(1));
 
     // sort by rating
     newItems.sort((a, b) => b.rating - a.rating);
