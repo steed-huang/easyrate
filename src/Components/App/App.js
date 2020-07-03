@@ -56,10 +56,10 @@ function App() {
         <button onClick={handleClearItems} id="button_2">
           Clear Items
         </button>
-
-        {/* Item Comparing Modal */}
-        <CompareItems item_one={1} item_two={2} />
       </div>
+
+      {/* Item Comparing Modal */}
+      <CompareItems items={items} />
     </>
   );
 }
