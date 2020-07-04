@@ -64,8 +64,8 @@ function App() {
     else if (n2 < 10) n2 = 10;
 
     // log rating change
-    console.log(newItems[index_1].name + ": Before: " + newItems[index_1].rating + " After: " + n1);
-    console.log(newItems[index_2].name + ": Before: " + newItems[index_2].rating + " After: " + n2);
+    console.log(newItems[index_1].name + ": " + newItems[index_1].rating + " -> " + n1);
+    console.log(newItems[index_2].name + ": " + newItems[index_2].rating + " -> " + n2);
 
     // update rating
     newItems[index_1] = { ...newItems[index_1], rating: n1 };

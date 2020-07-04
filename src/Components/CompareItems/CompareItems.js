@@ -24,6 +24,9 @@ export default class CompareItems extends React.Component {
       const shuffled = this.props.items.sort(() => 0.5 - Math.random());
       const selected = shuffled.slice(0, 2);
       this.setState({ random_items: selected });
+      console.log("\n");
+      console.log(selected[0].name + ": " + selected[0].rating);
+      console.log(selected[1].name + ": " + selected[1].rating);
     }
   };
 
@@ -67,7 +70,7 @@ export default class CompareItems extends React.Component {
     }
 
     // K factor (max rating change)
-    const K = 16;
+    const K = 32;
 
     // new elo rating
     let NR1 = (parseFloat(r1) + parseFloat(K) * (parseFloat(S1) - parseFloat(E1))).toFixed(1);

@@ -11,15 +11,15 @@
   display: flex;
   flex-direction: row;
 
+  min-height: 2.5vh;
   margin-top: 1vh;
   margin-bottom: 1vh;
 }
 
 .item_name {
   text-align: center;
-  width: 75%;
+  width: 74%;
   word-wrap: break-word;
-  margin-left: 5%;
 
   outline: 0.1vh solid grey;
   background-color: rgb(218, 218, 218);
@@ -27,8 +27,17 @@
 
 .item_rating {
   text-align: center;
-  width: 15%;
-  margin-right: 5%;
+  width: 12%;
+  margin-right: 2%;
+
+  outline: 0.1vh solid grey;
+  background-color: rgb(218, 218, 218);
+}
+
+.item_number {
+  text-align: center;
+  width: 10%;
+  margin-left: 2%;
 
   outline: 0.1vh solid grey;
   background-color: rgb(218, 218, 218);
