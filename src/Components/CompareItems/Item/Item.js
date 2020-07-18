@@ -6,7 +6,8 @@ import "./item.css";
 export default function Item({ item, updateFunc }) {
   return (
     <button onClick={updateFunc} className="select-button">
-      {item.name}
+      <div>{item.name}</div>
+      <img className="anime-image" alt="anime cover" src={item.img} />'
     </button>
   );
 }

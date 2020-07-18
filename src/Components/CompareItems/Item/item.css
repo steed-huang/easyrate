@@ -1,6 +1,12 @@
 .select-button {
-  height: 10vh;
+  height: 24vh;
   width: 20vh;
   margin-left: 5%;
   margin-right: 5%;
+}
+
+.anime-image {
+  margin-top: 1vh;
+  height: 15vh;
+  width: 10vh;
 }

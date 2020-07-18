@@ -102,7 +102,7 @@ export default class CompareItems extends React.Component {
           <div id="modal_background">
             <div id="modal_content">
               <div id="title_div">
-                <h3>Which is better?</h3>
+                <h2>Which is better?</h2>
               </div>
               <div id="select_div">
                 {/* Item Buttons */}

@@ -10,6 +10,7 @@ const LOCAL_STORAGE_KEY = "easyRate.items";
 function App() {
   const [items, setItems] = useState([]);
   const itemInputRef = useRef();
+  const userInputRef = useRef();
 
   // retrieve items from local storage
   useEffect(() => {
@@ -22,13 +23,44 @@ function App() {
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(items));
   }, [items]);
 
+  // add all watched anime of user
+  var addUserAnime = () => {
+    const user = userInputRef.current.value.trim();
+    try {
+      fetch("https://api.jikan.moe/v3/user/" + user + "/animelist/completed")
+        .then((res) => res.json())
+        .then((json) => {
+          console.log(json.anime);
+          for (let i = 0; i < json.anime.length; i++) {
+            //if (json.anime[i].score >= 6) {
+            setItems((prevItems) => {
+              return [
+                ...prevItems,
+                {
+                  id: uuidv4(),
+                  name: json.anime[i].title,
+                  img: json.anime[i].image_url,
+                  rating: 500,
+                },
+              ];
+            });
+            //}
+          }
+        });
+    } catch (e) {
+      console.log("error");
+    }
+
+    userInputRef.current.value = null;
+  };
+
   // add new item to list
   var handleAddItems = (e) => {
     const name = itemInputRef.current.value;
     if (name === "") return;
     // could replace uuid with name since they have unique names...
     setItems((prevItems) => {
-      return [...prevItems, { id: uuidv4(), name: name, rating: 50 }];
+      return [...prevItems, { id: uuidv4(), name: name, rating: 500 }];
     });
     itemInputRef.current.value = null;
   };
@@ -42,7 +74,7 @@ function App() {
   // reset ratings to 50
   var handleClearRatings = (e) => {
     const newItems = items.map((item) => {
-      return { ...item, rating: 50 };
+      return { ...item, rating: 500 };
     });
     setItems(newItems);
   };
@@ -58,9 +90,9 @@ function App() {
     let n2 = new_r2;
 
     // set bounds
-    if (n1 > 100) n1 = 100;
+    if (n1 > 1000) n1 = 1000;
     else if (n1 < 10) n1 = 10;
-    if (n2 > 100) n2 = 100;
+    if (n2 > 1000) n2 = 1000;
     else if (n2 < 10) n2 = 10;
 
     // log rating change
@@ -107,6 +139,13 @@ function App() {
         <button onClick={handleAddItems} className="button">
           Add Item
         </button>
+        <div>
+          <input ref={userInputRef}></input>
+          <button onClick={addUserAnime} className="button" id="button">
+            Load Watched
+          </button>
+        </div>
+
         <button onClick={handleClearRatings} className="button">
           Clear Ratings
         </button>
